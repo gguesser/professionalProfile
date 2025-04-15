@@ -1,0 +1,585 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guilherme Guesser - Software Engineer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <style>
+        :root {
+            --primary-color: #000000;
+            --secondary-color: #535252;
+            --dark-color: #202124;
+            --light-color: #f8f9fa;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: var(--dark-color);
+            position: relative;
+        }
+
+        .hero-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 6rem 0;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+        }
+
+        .navbar {
+            background-color: rgba(255, 255, 255, 0.95) !important;
+            box-shadow: 0 2px 10px rgb(5, 5, 5);
+        }
+
+        .nav-link {
+            color: var(--primary-color);
+        }
+
+        .btn:hover {
+            background-color: #e0e0e0;
+            color: #4e4d4d;
+            border-color: #000;
+        }
+
+        .section-title {
+            border-left: 5px solid var(--primary-color);
+            padding-left: 15px;
+            margin-bottom: 30px;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item:before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            z-index: 1;
+        }
+
+        .timeline-item:after {
+            content: "";
+            position: absolute;
+            left: 9px;
+            top: 20px;
+            width: 2px;
+            height: calc(100% + 20px);
+            background-color: var(--primary-color);
+        }
+
+        .timeline-item:last-child:after {
+            height: calc(100% - 20px);
+        }
+
+        .skill-box {
+            margin-bottom: 10px;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f8f9fa;
+            transition: all 0.3s;
+        }
+
+        .skill-box:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .language-switch {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        footer {
+            background-color: var(--dark-color);
+            color: white;
+            padding: 40px 0;
+        }
+
+        .contact-icon {
+            font-size: 1.5rem;
+            margin-right: 10px;
+            color: var(--primary-color);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        .btn-outline-primary {
+            /*background-color: var(--primary-color);*/
+            color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        a {
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background-color: #000000;
+            border-color: #000000;
+        }
+
+        [lang="en"] {
+            display: none;
+        }
+
+        [lang="pt"] {
+            display: none;
+        }
+
+        .active-lang {
+            display: block !important;
+        }
+
+        #scroll-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            cursor: pointer;
+            z-index: 1000;
+            display: none;
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar">
+    <div class="language-switch">
+        <button id="en-lang" class="btn btn-primary">EN</button>
+        <button id="pt-lang" class="btn btn-outline-primary">PT</button>
+    </div>
+
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about" lang="en">About</a>
+                        <a class="nav-link" href="#about" lang="pt">Sobre</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#experience" lang="en">Experience</a>
+                        <a class="nav-link" href="#experience" lang="pt">Experiência</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#skills" lang="en">Skills</a>
+                        <a class="nav-link" href="#skills" lang="pt">Habilidades</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#education" lang="en">Education</a>
+                        <a class="nav-link" href="#education" lang="pt">Formação</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact" lang="en">Contact</a>
+                        <a class="nav-link" href="#contact" lang="pt">Contato</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <!-- Coluna da foto -->
+                <div class="col-md-4 text-center mb-4 mb-md-0">
+                    <img src="me.png" alt="Guilherme Guesser" class="img-fluid rounded-circle shadow" style="max-width: 250px;">
+                </div>
+
+                <!-- Coluna do conteúdo -->
+                <div class="col-md-8 text-center text-md-start">
+                    <h1 class="display-4 fw-bold mb-4">Guilherme Guesser</h1>
+                    <p class="lead mb-4" lang="en">Senior Software Engineer with over 9 years of experience</p>
+                    <p class="lead mb-4" lang="pt">Engenheiro de Software Sênior com mais de 9 anos de experiência</p>
+                    <div class="d-flex justify-content-center justify-content-md-start flex-wrap gap-3">
+                        <a href="#contact" class="btn btn-light btn-lg px-4" lang="en">Contact Me</a>
+                        <a href="#about" class="btn btn-outline-light btn-lg px-4" lang="en">Learn More</a>
+                        <a href="#contact" class="btn btn-light btn-lg px-4" lang="pt">Entre em Contato</a>
+                        <a href="#about" class="btn btn-outline-light btn-lg px-4" lang="pt">Saiba Mais</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="section-title" lang="en">About Me</h2>
+                    <h2 class="section-title" lang="pt">Sobre Mim</h2>
+                    <p class="lead" lang="en">
+                        Software engineer with over 9 years of experience in web system architecture and development, focusing on PHP, Java, and JavaScript, working with both legacy and modern versions. I have extensive experience in the outsourcing market, where I have worked with a wide range of clients and products, including industries such as education, e-commerce, healthcare, and more.
+                    </p>
+                    <p lang="en">
+                        My main qualities are simplicity, objectivity, and organization. My goal as a professional is to contribute as much as possible and make a difference through my work while also learning from those around me. I enjoy teamwork and cooperation, and I believe that simple goals, focus, and good organization make all the difference in delivering successful projects.
+                    </p>
+                    <p class="lead" lang="pt">
+                        Engenheiro de software com mais de 9 anos de experiência em arquitetura e desenvolvimento de sistemas web, com foco em PHP, Java e JavaScript, trabalhando com versões legadas e modernas. Tenho vasta experiência no mercado de outsourcing, onde trabalhei com uma ampla gama de clientes e produtos, incluindo indústrias como educação, e-commerce, saúde e muito mais.
+                    </p>
+                    <p lang="pt">
+                        Minhas principais qualidades são simplicidade, objetividade e organização. Meu objetivo como profissional é contribuir ao máximo e fazer a diferença através do meu trabalho, enquanto também aprendo com aqueles ao meu redor. Gosto de trabalho em equipe e cooperação, e acredito que objetivos simples, foco e boa organização fazem toda a diferença na entrega de projetos bem-sucedidos.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="section-title" lang="en">Professional Experience</h2>
+                    <h2 class="section-title" lang="pt">Experiência Profissional</h2>
+                    
+                    <div class="timeline">
+                        <!-- Latest Job -->
+                        <div class="timeline-item">
+                            <h4 lang="en">Full-Stack Developer</h4>
+                            <h4 lang="pt">Desenvolvedor Full-Stack</h4>
+                            <p class="text-muted mb-2">2022 - Present</p>
+                            <p lang="en">
+                                Responsible for handling the backlog section of the company's portal, website and back-office ERP system. Participated in several projects, mainly focusing on improvements in Google Analytics, GTM and data engineering, as well as the development of a B2B sales module, creation of integration services between systems with NestJS and a complete frontend module with Nuxt.
+                            </p>
+                            <p lang="pt">
+                                Responsável por gerenciar a seção de backlog do portal, site e sistema ERP de back-office da empresa. Participei de diversos projetos, com foco principalmente em melhorias no Google Analytics, GTM e engenharia de dados, além do desenvolvimento de um módulo de vendas B2B, criação de serviços de integração entre sistemas com NestJS e um módulo frontend completo com Nuxt.
+                            </p>
+                            <p class="mb-0"><strong lang="en">Technologies:</strong> <strong lang="pt">Tecnologias:</strong> PHP 8.0+, Vue JS, Node JS, CSS, Bootstrap, AWS, Next JS, Nest JS, GTM, GA, Facebook ADS, Google ADS, Measure Protocol, TypeScript, Nuxt</p>
+                        </div>
+                        
+                        <!-- Senior Software Engineer -->
+                        <div class="timeline-item">
+                            <h4 lang="en">Senior Software Engineer</h4>
+                            <h4 lang="pt">Engenheiro de Software Sênior</h4>
+                            <p class="text-muted mb-2">2021 - 2022</p>
+                            <p lang="en">
+                                Worked in the areas of e-commerce, ERP, and the wood industry, providing maintenance for existing systems and developing new modules and systems from scratch.
+                            </p>
+                            <p lang="pt">
+                                Atuei nas áreas de e-commerce, ERP e na indústria madeireira, fornecendo manutenção para sistemas existentes e desenvolvendo novos módulos e sistemas do zero.
+                            </p>
+                            <p class="mb-0"><strong lang="en">Technologies:</strong> <strong lang="pt">Tecnologias:</strong> PHP 5.3 - 8.0+, Vue JS, Node JS, CSS, Bootstrap, Kanban, Scrum</p>
+                        </div>
+                        
+                        <!-- Senior Body Shop -->
+                        <div class="timeline-item">
+                            <h4 lang="en">Senior Software Engineer - Body Shop</h4>
+                            <h4 lang="pt">Engenheiro de Software Sênior - Body Shop</h4>
+                            <p class="text-muted mb-2">2018 - 2021</p>
+                            <p lang="en">
+                                Worked in outsourcing IT services market with national and international projects. Responsible for understanding client's business needs, executing maintenance, evolutions, architecture, project management, and consultancy on web systems. Served various sectors including telecommunications, e-commerce, energy industry, engine industry, and government departments.
+                            </p>
+                            <p lang="pt">
+                                Trabalhei no mercado de serviços de TI de outsourcing com projetos nacionais e internacionais. Responsável por entender as necessidades de negócios do cliente, executar manutenção, evoluções, arquitetura, gerenciamento de projetos e consultoria em sistemas web. Atendi diversos setores, incluindo telecomunicações, e-commerce, indústria de energia, indústria de motores e departamentos governamentais.
+                            </p>
+                            <p class="mb-0"><strong lang="en">Technologies:</strong> <strong lang="pt">Tecnologias:</strong> PHP (Laravel, Zend, Symfony, CodeIgniter), Java (Spring, JBoss/Wildfly, JSP/JSF, Selenium), JavaScript (React, Angular, Node, Vue JS, jQuery), Frontend (Bootstrap, CSS, Flexbox), GeneXus, AWS, Docker</p>
+                        </div>
+                        
+                        <!-- Product Owner -->
+                        <div class="timeline-item">
+                            <h4 lang="en">Full Stack Developer / Product Owner</h4>
+                            <h4 lang="pt">Desenvolvedor Full Stack / Product Owner</h4>
+                            <p class="text-muted mb-2">2016 - 2018</p>
+                            <p lang="en">
+                                Worked in customized on-demand projects, managing employee control systems integrated with the eSocial layout, creating earnings issuance systems, and developing data mining technologies. Advanced from full stack developer to product owner, managing a team of two developers.
+                            </p>
+                            <p lang="pt">
+                                Trabalhei em projetos personalizados sob demanda, gerenciando sistemas de controle de funcionários integrados ao layout eSocial, criando sistemas de emissão de rendimentos e desenvolvendo tecnologias de mineração de dados. Avancei de desenvolvedor full stack para product owner, gerenciando uma equipe de dois desenvolvedores.
+                            </p>
+                            <p class="mb-0"><strong lang="en">Technologies:</strong> <strong lang="pt">Tecnologias:</strong> Scrum, Kanban, Java, PHP, CSS, Bootstrap, AWS (Lambda, API Gateway, CloudWatch, EC2, Route 53), Laravel 5.4 to 8, jQuery, JavaScript, Node JS, Auth02, Selenium WD</p>
+                        </div>
+                        
+                        <!-- Systems & Company -->
+                        <div class="timeline-item">
+                            <h4 lang="en">Developer</h4>
+                            <h4 lang="pt">Desenvolvedor</h4>
+                            <p class="text-muted mb-2">2014 - 2016</p>
+                            <p lang="en">
+                                Worked as the sole programmer responsible for immediate problem-solving, implementing new features, and system integrations. Led the creation of a buy comprovant emission system and validated a tax coupon issuing system.
+                            </p>
+                            <p lang="pt">
+                                Trabalhei como único programador responsável pela resolução imediata de problemas, implementação de novos recursos e integrações de sistemas. Liderei a criação de um sistema de emissão de comprovantes de compra e validei um sistema de emissão de cupons fiscais.
+                            </p>
+                            <p class="mb-0"><strong lang="en">Technologies:</strong> <strong lang="pt">Tecnologias:</strong> Java, Genexus, PHP, CSS, Bootstrap, Visual Fox Pro, MVC Architecture</p>
+                        </div>
+                        
+                        <!-- Malwee Groups -->
+                        <div class="timeline-item">
+                            <h4 lang="en">Support Assistant</h4>
+                            <h4 lang="pt">Assistente de Suporte</h4>
+                            <p class="text-muted mb-2">2012 - 2014</p>
+                            <p lang="en">
+                                Worked in service desk supporting retail systems for the group's stores and franchises. Experience in invoice issuance, inventory control, and remote maintenance of POS systems. Responsible for mobile equipment regulation and corporate network access documentation.
+                            </p>
+                            <p lang="pt">
+                                Trabalhei no service desk dando suporte a sistemas de varejo para as lojas e franquias do grupo. Experiência em emissão de faturas, controle de estoque e manutenção remota de sistemas de caixa. Responsável pela regulamentação de equipamentos móveis e documentação de acesso à rede corporativa.
+                            </p>
+                            <p class="mb-0"><strong lang="en">Technologies:</strong> <strong lang="pt">Tecnologias:</strong> Jira, Agile, Scrum, Kanban</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="skills" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-10 mx-auto">
+                    <h2 class="section-title" lang="en">Technical Skills</h2>
+                    <h2 class="section-title" lang="pt">Habilidades Técnicas</h2>
+                    
+                    <div class="row">
+                        <div class="col-md-4 mb-4">
+                            <div class="skill-box">
+                                <h4>Backend</h4>
+                                <ul class="list-unstyled">
+                                    <li>PHP (Laravel, Symfony, Zend, CodeIgniter)</li>
+                                    <li>Java (Spring, JBoss/Wildfly, JSP/JSF)</li>
+                                    <li>Node.js (Express, NestJS)</li>
+                                    <li>SQL/NoSQL Databases</li>
+                                    <li>API Development</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="skill-box">
+                                <h4>Frontend</h4>
+                                <ul class="list-unstyled">
+                                    <li>JavaScript/TypeScript</li>
+                                    <li>Vue.js/Nuxt.js</li>
+                                    <li>React/Next.js</li>
+                                    <li>Angular</li>
+                                    <li>HTML5/CSS3/Bootstrap</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="skill-box">
+                                <h4>DevOps/Cloud</h4>
+                                <ul class="list-unstyled">
+                                    <li>AWS (EC2, Lambda, API Gateway, etc.)</li>
+                                    <li>Docker</li>
+                                    <li>CI/CD Pipelines</li>
+                                    <li>Server Maintenance</li>
+                                    <li>Database Administration</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="skill-box">
+                                <h4 lang="en">Methodologies</h4>
+                                <h4 lang="pt">Metodologias</h4>
+                                <ul class="list-unstyled">
+                                    <li>Agile/Scrum/Kanban</li>
+                                    <li>MVC Architecture</li>
+                                    <li>DDD (Domain-Driven Design)</li>
+                                    <li>Clean Code</li>
+                                    <li>TDD</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="skill-box">
+                                <h4 lang="en">Marketing & Analytics</h4>
+                                <h4 lang="pt">Marketing e Analytics</h4>
+                                <ul class="list-unstyled">
+                                    <li>Google Analytics</li>
+                                    <li>Google Tag Manager</li>
+                                    <li>Facebook Ads</li>
+                                    <li>Google Ads</li>
+                                    <li>Measure Protocol</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="skill-box">
+                                <h4 lang="en">Project Management</h4>
+                                <h4 lang="pt">Gestão de Projetos</h4>
+                                <ul class="list-unstyled">
+                                    <li>Team Leadership</li>
+                                    <li>Product Owner Experience</li>
+                                    <li lang="en">Client Communication</li>
+                                    <li lang="pt">Comunicação com Clientes</li>
+                                    <li lang="en">Requirements Analysis</li>
+                                    <li lang="pt">Análise de Requisitos</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="education" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="section-title" lang="en">Education</h2>
+                    <h2 class="section-title" lang="pt">Formação</h2>
+                    
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title" lang="en">Systems Analysis and Development</h5>
+                            <h5 class="card-title" lang="pt">Análise e Desenvolvimento de Sistemas</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Uniasselvi/Senai</h6>
+                        </div>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title" lang="en">Data Processing Technician</h5>
+                            <h5 class="card-title" lang="pt">Técnico em Processamento de Dados</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Tupy Technical School</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 mx-auto text-center">
+                    <h2 class="section-title text-center mb-5" lang="en">Contact Me</h2>
+                    <h2 class="section-title text-center mb-5" lang="pt">Entre em Contato</h2>
+                    
+                    <div class="row justify-content-center">
+                        <div class="col-md-4 mb-4">
+                            <div class="d-flex align-items-center justify-content-center mb-3">
+                                <i class="fas fa-envelope contact-icon"></i>
+                                <span>gui.guesser@gmail.com</span>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="d-flex align-items-center justify-content-center mb-3">
+                                <a href="http://wa.me/+5547989087227">
+                                    <i class="fab fa-whatsapp contact-icon"></i>
+                                    <span>+55 47 99890-7227</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-4">
+                            <div class="d-flex align-items-center justify-content-center mb-3">
+                                <a href="https://t.me/+5547989087227">
+                                    <i class="fab fa-telegram contact-icon"></i>
+                                    <span>+55 47 99890-7227</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="text-center">
+        <div class="container">
+            <p class="mb-0" lang="en">© 2025 Guilherme Guesser. All rights reserved.</p>
+            <p class="mb-0" lang="pt">© 2025 Guilherme Guesser. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <div id="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            // Language switcher
+            const $enLangBtn = $('#en-lang');
+            const $ptLangBtn = $('#pt-lang');
+            const $enElements = $('[lang="en"]');
+            const $ptElements = $('[lang="pt"]');
+
+            // Set English as default
+            $enElements.addClass('active-lang');
+            $enLangBtn.addClass('btn-primary').removeClass('btn-outline-primary');
+            $ptLangBtn.addClass('btn-outline-primary').removeClass('btn-primary');
+
+            $enLangBtn.on('click', function () {
+                $enElements.addClass('active-lang');
+                $ptElements.removeClass('active-lang');
+                $enLangBtn.addClass('btn-primary').removeClass('btn-outline-primary');
+                $ptLangBtn.addClass('btn-outline-primary').removeClass('btn-primary');
+            });
+
+            $ptLangBtn.on('click', function () {
+                $ptElements.addClass('active-lang');
+                $enElements.removeClass('active-lang');
+                $ptLangBtn.addClass('btn-primary').removeClass('btn-outline-primary');
+                $enLangBtn.addClass('btn-outline-primary').removeClass('btn-primary');
+            });
+
+            // Scroll to top button
+            const $scrollTopBtn = $('#scroll-top');
+
+            $(window).on('scroll', function () {
+                if ($(window).scrollTop() > 300) {
+                    $scrollTopBtn.show();
+                } else {
+                    $scrollTopBtn.hide();
+                }
+            });
+
+            $scrollTopBtn.on('click', function () {
+                $('html, body').animate({ scrollTop: 0 }, 'smooth');
+            });
+
+            // Smooth scrolling for anchor links
+            $('a[href^="#"]').on('click', function (e) {
+                e.preventDefault();
+
+                const targetId = $(this).attr('href');
+                if (targetId === '#') return;
+
+                const $targetElement = $(targetId);
+                if ($targetElement.length) {
+                    const navbarHeight = $('.navbar').outerHeight() || 0;
+                    const targetPosition = $targetElement.offset().top - navbarHeight;
+
+                    $('html, body').animate({
+                        scrollTop: targetPosition
+                    }, 'smooth');
+                }
+            });
+        });
+</script>
